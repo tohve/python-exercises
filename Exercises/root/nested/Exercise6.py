@@ -10,6 +10,6 @@ s = input("Input possible palindrome: ")
 sb = s[::-1]
 
 if s.lower() == sb.lower():
-    print(s + " is a palidrome!")
+    print("\'" + s + "\' is a palidrome!")
 else:
-    print(s + " is NOT a paildrome! Reversing it gives " + sb)
+    print("\'" + s + "\' is NOT a paildrome! Reversing it gives \'" + sb + "\'.")
