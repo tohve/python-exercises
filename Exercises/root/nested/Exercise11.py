@@ -66,12 +66,11 @@ def get_factors(n):
                         
     # how long didi it take
     d = datetime.now() - t_start
-    print("Factorized in", d.seconds)
+    print("Factorized in", d.seconds, "s")
     
     return r
 
-#n = get_integer("Give me a possible prime: ")
-n=122949823*104395303
+n = get_integer("Give me a possible prime: ")
 f = get_factors(n)
 
 if len(f) == 0:
