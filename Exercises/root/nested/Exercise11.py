@@ -3,9 +3,7 @@ Created on 7 maj 2016
 
 @author: Tohmas
 '''
-from lib2to3.pgen2.token import PERCENT
-NOT_PRIME = 0
-PRIME = 1
+from datetime import datetime
 
 # function for getting an integer with default help text
 def get_integer(help_text = "Enter a number: "):
@@ -21,7 +19,7 @@ def get_integer(help_text = "Enter a number: "):
 # function for deciding if prime
 def is_prime(n):
     
-    l = range(2, n)
+    l = range(2, int((n+1)/2))
     l = [elem for elem in l if not n % elem]
     if len(l) == 0:
         return True
@@ -29,29 +27,51 @@ def is_prime(n):
         return False
 
 def get_factors(n):
+    o = n
     r = []
     f = 2
-    per = 0
+
+    print("Trying to factorize", n)    
     
     # n even?
     while not n % f:
         n = n / f
         r.append(f)
-        
+    
+    # here n is no longer even just try the lower third
     f = 3
-    while n != 1 and f < (n / 2):
+    try_range = int(n / 3) + 1
+    
+    # factorize using odd values from 3 and upwards
+    t = t_start = datetime.now()
+    last_print = 0
+    while n != 1 and f <= try_range:
         while not n % f:
-            n = n / f
+            # factor found, remove it
+            n = int(n / f)
+            try_range = int(n / 3) + 1
             r.append(f)
+        
+        # since n is not even, only try odd factors
         f = f + 2
-        if int(100*f/n) > per:
-            print("%02d" % int(200*f/n), "%", end='\r')
-            per = int(100*f/n)
 
-    print("100 %")
+        # print progress        
+        if (f - last_print) > 593713:
+            print("Trying", f, end='\r')
+            last_print = f
+            
+    # are there factors, append rest
+    if len(r) !=0 and n != 1:
+        r.append(int(n))
+                        
+    # how long didi it take
+    d = datetime.now() - t_start
+    print("Factorized in", d.seconds)
+    
     return r
 
-n = get_integer("Give me a possible prime: ")
+#n = get_integer("Give me a possible prime: ")
+n=122949823*104395303
 f = get_factors(n)
 
 if len(f) == 0:
