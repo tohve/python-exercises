@@ -31,3 +31,8 @@ print("Second list: " + str(b))
 # Find the overlapping items
 # Check if an element is in both a and b and not in c and if found add that element to c to avoid duplicates
 print("Overlapping items: " + str([elem for elem in a if elem in b and elem not in c and not c.append(elem)]))
+
+# same using sets (exercise 14)
+a = set(a)
+b = set(b)
+print("Overlapping items: " + str([elem for elem in a if elem in b]))
