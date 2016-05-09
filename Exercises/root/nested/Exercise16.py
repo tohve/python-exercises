@@ -6,7 +6,7 @@ Created on 9 maj 2016
 import string
 import random
 
-def pw_gen(size = 8, chars=string.ascii_letters + string.digits + string.punctuation):
-    return ''.join(random.choice(chars) for _ in range(size))
+def password_gen(size = 8, c=string.ascii_letters + string.digits + string.punctuation):
+    return ''.join(random.choice(c) for _ in range(size))
 
-print(pw_gen(int(input('How many characters in your password?'))))
+print(password_gen(int(input("Generate a password of size: "))))
