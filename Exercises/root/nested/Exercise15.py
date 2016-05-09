@@ -9,6 +9,6 @@ def reverse_words():
     l = s.split()
     l = l[::-1]
     
-    print(l)
+    print(' '.join(l))
     
 reverse_words()
